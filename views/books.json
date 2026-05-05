@@ -1,0 +1,32 @@
+
+
+[
+  {
+    "title": "The Great Gatsby",
+    "rent_price": "5 USD",
+    "buy_price": "15 USD",
+    "short_description": "A classic novel by F. Scott Fitzgerald.",
+    "long_description": "The Great Gatsby is a story about the wealthy Jay Gatsby and his tragic love for Daisy Buchanan, set in the Roaring Twenties."
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "rent_price": "4 USD",
+    "buy_price": "12 USD",
+    "short_description": "A novel about racial injustice in the Deep South.",
+    "long_description": "Written by Harper Lee, the novel follows Scout Finch as she grows up in a town plagued by racial discrimination, guided by her father, Atticus Finch."
+  },
+  {
+    "title": "1984",
+    "rent_price": "6 USD",
+    "buy_price": "18 USD",
+    "short_description": "A dystopian novel by George Orwell.",
+    "long_description": "The novel presents a terrifying vision of a totalitarian society under constant surveillance, where independent thought is suppressed."
+  },
+  {
+    "title": "Moby-Dick",
+    "rent_price": "7 USD",
+    "buy_price": "20 USD",
+    "short_description": "A novel about a whaling voyage.",
+    "long_description": "Written by Herman Melville, the story follows Captain Ahab’s obsessive quest to hunt down the white whale, Moby-Dick."
+  }
+]

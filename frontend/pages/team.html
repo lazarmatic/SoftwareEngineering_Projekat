@@ -1,0 +1,256 @@
+<div class="container">
+  <div class="text-center">
+    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+    <h3 class="section-subheading text-muted">
+      Introducing some of our main characters!
+    </h3>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="team-member">
+        <button
+          class="toggle-btn"
+          data-target="section1"
+          id="team1"
+          onclick="teamshowing(document.getElementById('team1'))"
+        >
+          Book Store Manager
+        </button>
+        <section id="section1" class="content-section">
+          <img
+            class="mx-auto rounded-circle"
+            src="./assets/images/team/1.jpg"
+            alt="..."
+          />
+          <h4>Parveen Anand</h4>
+          <p class="text-muted">Master of Marketing</p>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="#!"
+            aria-label="Parveen Anand Twitter Profile"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="#!"
+            aria-label="Parveen Anand Facebook Profile"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="#!"
+            aria-label="Parveen Anand LinkedIn Profile"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </section>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="team-member">
+        <button
+          class="toggle-btn"
+          data-target="section2"
+          id="team2"
+          onclick="teamshowing(document.getElementById('team2'))"
+        >
+          Library Manager
+        </button>
+        <section id="section2" class="content-section">
+          <img
+            class="mx-auto rounded-circle"
+            src="./assets/images/team/2.jpg"
+            alt="..."
+          />
+          <h4>Diana Petersen</h4>
+          <p class="text-muted">Master of Book History</p>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="#!"
+            aria-label="Diana Petersen Twitter Profile"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="#!"
+            aria-label="Diana Petersen Facebook Profile"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="#!"
+            aria-label="Diana Petersen LinkedIn Profile"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </section>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="team-member">
+        <button
+          id="team3"
+          onclick="teamshowing(document.getElementById('team3'))"
+          class="toggle-btn"
+          data-target="section3"
+        >
+          Library Manager
+        </button>
+        <section id="section3" class="content-section">
+          <img
+            class="mx-auto rounded-circle"
+            src="./assets/images/team/3.jpg"
+            alt="..."
+          />
+          <h4>Larry Parker</h4>
+          <p class="text-muted">BookWriter and Publisher</p>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="#!"
+            aria-label="Larry Parker Twitter Profile"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="#!"
+            aria-label="Larry Parker Facebook Profile"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            class="btn btn-dark btn-social mx-2"
+            href="#!"
+            aria-label="Larry Parker LinkedIn Profile"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+      <p class="large text-muted">
+        Team leaders of our library system. All employees in our company are
+        highly educated and experienced proffesionals with unique characters. Be
+        sure that everyone is giving his best to make our library shine and
+        touch the stars!
+      </p>
+    </div>
+  </div>
+  <div class="text-center">
+    <h2 class="section-heading text-uppercase">Frequently Asked Questions</h2>
+    <h3 class="section-subheading text-muted">
+      Here you can find some of the most frequently asked questions, already
+      answered!
+    </h3>
+  </div>
+  <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion('content1')">
+        Renting and Buying Books
+      </div>
+      <div id="content1" class="accordion-content">
+        <p>
+          <b>How do I rent a book?</b> <br />
+          <i>
+            You can rent a book through our eLibrary app by selecting the book,
+            choosing the rental duration, and completing the process. You can
+            pick it up in person or have it delivered.
+          </i>
+        </p>
+        <p>
+          <b>What happens if I return a rented book late?</b> <br />
+          <i>
+            Late returns may incur a small fee per day. You can check the
+            details of late fees in our app under "Rental Terms."
+          </i>
+        </p>
+        <p>
+          <b>Can I extend my book rental period?</b> <br />
+          <i>
+            Yes, if the book is available, you can extend your rental period
+            through the app before the due date.
+          </i>
+        </p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion('content2')">
+        Library Services & Online Store
+      </div>
+      <div id="content2" class="accordion-content">
+        <p>
+          <b>Can I buy books online and pick them up at the library?</b> <br />
+          <i>
+            Yes! You can purchase books through our online store and select the
+            "Pick Up at Library" option at checkout.
+          </i>
+        </p>
+        <p>
+          <b>Is there a space in the library for reading and studying?</b>
+          <br />
+          <i>
+            Yes, our library provides a dedicated area for reading and studying.
+            You can also book a quiet study room through our app.
+          </i>
+        </p>
+        <p>
+          <b>What payment methods are accepted for online orders?</b> <br />
+          <i>
+            We accept credit/debit cards, PayPal, and direct bank transfers for
+            online purchases.
+          </i>
+        </p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion('content3')">
+        General Information
+      </div>
+      <div id="content3" class="accordion-content">
+        <p>
+          <b>What is the eLibrary application?</b> <br />
+          <i>
+            The eLibrary app is a digital platform where you can rent, buy, and
+            explore books. It also provides access to a physical library for
+            reading and studying.
+          </i>
+        </p>
+        <p>
+          <b>Do I need an account to use the eLibrary?</b> <br />
+          <i>
+            Yes, you need to create an account to rent or purchase books.
+            However, you can browse the catalog without an account.
+          </i>
+        </p>
+        <p>
+          <b>Where is the physical library located?</b> <br />
+          <i>
+            Our library is located at New York, King Stonburnn's 17A. You can
+            visit us during working hours for book rentals, purchases, and study
+            sessions.
+          </i>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Accordion menu - faq
+  function toggleAccordion(contentId) {
+    const content = document.getElementById(contentId);
+    if (content.classList.contains("show")) {
+      content.classList.remove("show");
+    } else {
+      content.classList.add("show");
+    }
+  }
+  // Team people toggle requirement
+  function teamshowing(button) {
+    const targetId = button.getAttribute("data-target");
+    const targetSection = document.getElementById(targetId);
+
+    if (targetSection.classList.contains("show")) {
+      targetSection.classList.remove("show");
+    } else {
+      targetSection.classList.add("show");
+    }
+  }
+</script>

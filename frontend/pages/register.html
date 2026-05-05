@@ -1,0 +1,41 @@
+<div class="registration-container container">
+  <h2 class="text-center">Register</h2>
+  <form id="registrationForm">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" required />
+      <small class="text-danger" id="usernameError"></small>
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input type="text" class="form-control" id="name" required />
+      <small class="text-danger" id="nameError"></small>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" required />
+      <small class="text-danger" id="emailError"></small>
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone Number</label>
+      <input type="text" class="form-control" id="phone" required />
+      <small class="text-danger" id="phoneError"></small>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" required />
+      <small class="text-danger" id="passwordError"></small>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Register</button>
+  </form>
+  <p class="text-center mt-3">
+    Already registered?
+    <a href="#login">Log in</a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function () {
+   UserService.initRegister();
+ }); 
+</script>

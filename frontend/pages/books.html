@@ -1,0 +1,64 @@
+<div class="container">
+  <h1>Books</h1>
+  <!--Table-->
+  <div class="row mt-4" id="books-container"></div>
+   <!-- View Book Modal -->
+   <div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewMoreModalLabel">Book Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Title:</strong> <span id="book-title"></span></p>
+          <p><strong>Author:</strong> <span id="book-author"></span></p>
+          <p><strong>Rent Price:</strong> €<span id="book-rent-price"></span></p>
+          <p><strong>Buy Price:</strong> €<span id="book-buy-price"></span></p>
+          <p><strong>Stock Quantity:</strong> <span id="book-stock"></span></p>
+          <p><strong>Available for Rent:</strong> <span id="book-rentable"></span></p>
+          <p><strong>Available for Purchase:</strong> <span id="book-purchasable"></span></p>
+          <p><strong>Short Description:</strong> <span id="book-short-description"></span></p>
+          <p><strong>Long Description:</strong> <span id="book-long-description"></span></p>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="bookReviewsModal" tabindex="-1" aria-labelledby="bookReviewsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookReviewsModalLabel">Book Reviews</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="reviews-list" class="list-group mb-4"></div>
+
+  <h5>Add a Review</h5>
+  <form id="inlineAddReviewForm">
+    <input type="hidden" name="book_id" id="review_book_id">
+    <input type="hidden" name="user_id" id="review_user_id">
+    <div class="mb-3">
+      <textarea class="form-control" name="review_text" rows="3" placeholder="Write your review here..." required></textarea>
+    </div>
+    <input type="hidden" name="review_date" id="review_date">
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+  </form>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</div>
+
+<script>
+  BookService.init(); 
+  BookReviewService.init();
+</script>

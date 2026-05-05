@@ -1,0 +1,708 @@
+<div class="container">
+  <h1>Books</h1>
+  <button
+    type="button"
+    class="btn btn-primary btn-lg"
+    data-toggle="modal"
+    data-target="#addBookModal"
+    onclick="BookService.openAddModal()"
+  >
+  Add book
+  </button>
+  <!-- Add Modal -->
+  <div class="modal" id="addBookModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="addBookForm">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Book</h5>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title">
+              </div>
+              <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" class="form-control" id="author" name="author">
+              </div>
+              <div class="form-group">
+                <label for="rent_price">Rent Price:</label>
+                <input type="number" class="form-control" id="rent_price" name="rent_price">
+              </div>
+              <div class="form-group">
+                <label for="buy_price">Buy Price:</label>
+                <input type="number" class="form-control" id="buy_price" name="buy_price">
+              </div>
+              <div class="form-group">
+                <label for="description_short">Short Description:</label>
+                <input type="text" class="form-control" id="description_short" name="description_short">
+              </div>
+              <div class="form-group">
+                <label for="description_long">Long Description:</label>
+                <input type="text" class="form-control" id="description_long" name="description_long">
+              </div>
+              <div class="form-group">
+                <label for="stock_quantity">Stock Quantity:</label>
+                <input type="number" class="form-control" id="stock_quantity" name="stock_quantity">
+              </div>
+              <div class="form-group">
+                <label for="available_for_rent">Available for Rent:</label>
+                <input type="boolean" class="form-control" id="available_for_rent" name="available_for_rent">
+              </div>
+              <div class="form-group">
+                <label for="available_for_purchase">Available for Purchase:</label>
+                <input type="boolean" class="form-control" id="available_for_purchase" name="available_for_purchase">
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="BookService.closeModal()">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+  <!--Table-->
+  <table id="books-table"></table>
+  <!-- Edit Book Modal -->
+<div class="modal" id="editBookModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form id="editBookForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Book</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="edit_book_id" name="id" />
+
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title">
+          </div>
+          <div class="form-group">
+            <label for="author">Author:</label>
+            <input type="text" class="form-control" id="author" name="author">
+          </div>
+          <div class="form-group">
+            <label for="rent_price">Rent Price:</label>
+            <input type="number" class="form-control" id="rent_price" name="rent_price">
+          </div>
+          <div class="form-group">
+            <label for="buy_price">Buy Price:</label>
+            <input type="number" class="form-control" id="buy_price" name="buy_price">
+          </div>
+          <div class="form-group">
+            <label for="description_short">Short Description:</label>
+            <input type="text" class="form-control" id="description_short" name="description_short">
+          </div>
+          <div class="form-group">
+            <label for="description_long">Long Description:</label>
+            <input type="text" class="form-control" id="description_long" name="description_long">
+          </div>
+          <div class="form-group">
+            <label for="stock_quantity">Stock Quantity:</label>
+            <input type="number" class="form-control" id="stock_quantity" name="stock_quantity">
+          </div>
+          <div class="form-group">
+            <label for="available_for_rent">Available for Rent:</label>
+            <input type="boolean" class="form-control" id="available_for_rent" name="available_for_rent">
+          </div>
+          <div class="form-group">
+            <label for="available_for_purchase">Available for Purchase:</label>
+            <input type="boolean" class="form-control" id="available_for_purchase" name="available_for_purchase">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="BookService.closeModal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+  <!-- Delete Book Modal -->
+  <div
+  class="modal fade"
+  id="deleteBookModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Delete book</h5>
+      <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+      >
+          <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <input id="delete_book_id" name="id" hidden />
+      <div class="modal-body" id="delete-book-body"></div>
+      <div class="modal-footer">
+      <button
+          type="button"
+          class="btn btn-default"
+          id="close_button"
+          data-dismiss="modal"
+          onclick="BookService.closeModal()"
+      >
+          Close
+      </button>
+      <button
+          type="submit"
+          onclick="BookService.deleteBook()"
+          class="btn btn-primary"
+      >
+          Submit
+      </button>
+      </div>
+  </div>
+  </div>
+  </div>
+   <!-- View Book Modal -->
+   <div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewMoreModalLabel">Book Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <div class="modal-body">
+          <p><strong>Title:</strong> <span id="book-title"></span></p>
+          <p><strong>Author:</strong> <span id="book-author"></span></p>
+          <p><strong>Rent Price:</strong> €<span id="book-rent-price"></span></p>
+          <p><strong>Buy Price:</strong> €<span id="book-buy-price"></span></p>
+          <p><strong>Stock Quantity:</strong> <span id="book-stock"></span></p>
+          <p><strong>Available for Rent:</strong> <span id="book-rentable"></span></p>
+          <p><strong>Available for Purchase:</strong> <span id="book-purchasable"></span></p>
+          <p><strong>Short Description:</strong> <span id="book-short-description"></span></p>
+          <p><strong>Long Description:</strong> <span id="book-long-description"></span></p>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <!-- Book Rentals -->
+  <h1>Book Rentals</h1>
+  <button
+    type="button"
+    class="btn btn-primary btn-lg"
+    data-toggle="modal"
+    data-target="#addBookRentalModal"
+    onclick="BookRentalService.openAddModal()"
+  >
+  Add book rental
+  </button>
+  
+  <!-- Book Rentals Table -->
+<table id="bookRentalsTable" class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User ID</th>
+      <th>Book ID</th>
+      <th>Rental Date</th>
+      <th>Return Date</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<!-- Add Book Rental Modal -->
+<div class="modal fade" id="addBookRentalModal" tabindex="-1" aria-labelledby="addBookRentalModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="addBookRentalForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBookRentalModalLabel">Add Book Rental</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="add_user_id" class="form-label">User ID</label>
+            <input type="number" class="form-control" id="add_user_id" name="user_id" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_book_id" class="form-label">Book ID</label>
+            <input type="number" class="form-control" id="add_book_id" name="book_id" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_rental_date" class="form-label">Rental Date</label>
+            <input type="date" class="form-control" id="add_rental_date" name="rental_date" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_return_date" class="form-label">Return Date</label>
+            <input type="date" class="form-control" id="add_return_date" name="return_date">
+          </div>
+          <div class="mb-3">
+            <label for="add_status" class="form-label">Status</label>
+            <select class="form-control" id="add_status" name="status" required>
+              <option value="Rented">Rented</option>
+              <option value="Returned">Returned</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add Book Rental</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Book Rental Modal -->
+<div class="modal fade" id="editBookRentalModal" tabindex="-1" aria-labelledby="editBookRentalModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editBookRentalForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBookRentalModalLabel">Edit Book Rental</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="rental_id" name="id">
+          <div class="mb-3">
+            <label for="edit_user_id" class="form-label">User ID</label>
+            <input type="number" class="form-control" id="edit_user_id" name="user_id" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_book_id" class="form-label">book ID</label>
+            <input type="number" class="form-control" id="edit_book_id" name="book_id" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_rental_date" class="form-label">rental date</label>
+            <input type="date" class="form-control" id="edit_rental_date" name="rental_date" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_return_date" class="form-label">return date</label>
+            <input type="date" class="form-control" id="edit_return_date" name="return_date">
+          </div>
+          <div class="mb-3">
+            <label for="edit_status" class="form-label">status</label>
+            <select class="form-control" id="edit_status" name="status" required>
+              <option value="Rented">Rented</option>
+              <option value="Returned">Returned</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update Rental</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Delete Book Rental Modal -->
+<div class="modal fade" id="deleteBookRentalModal" tabindex="-1" aria-labelledby="deleteBookRentalModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteBookRentalModalLabel">Delete Book Rental</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="delete-bookRental-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteRental">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Book Purchases -->
+<h1>Book Purchases</h1>
+<button
+  type="button"
+  class="btn btn-primary btn-lg"
+  data-toggle="modal"
+  data-target="#addBookPurchaseModal"
+  onclick="BookPurchaseService.openAddModal()"
+>
+  Add Book Purchase
+</button>
+
+<!-- Book Purchases Table -->
+<table id="bookPurchasesTable" class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User ID</th>
+      <th>Book ID</th>
+      <th>Purchase Date</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<!-- Add Book Purchase Modal -->
+<div class="modal fade" id="addBookPurchaseModal" tabindex="-1" aria-labelledby="addBookPurchaseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="addBookPurchaseForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBookPurchaseModalLabel">Add Book Purchase</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="add_purchase_user_id" class="form-label">User ID</label>
+            <input type="number" class="form-control" id="add_purchase_user_id" name="user_id" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_purchase_book_id" class="form-label">Book ID</label>
+            <input type="number" class="form-control" id="add_purchase_book_id" name="book_id" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_purchase_date" class="form-label">Purchase Date</label>
+            <input type="date" class="form-control" id="add_purchase_date" name="purchase_date" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_quantity" class="form-label">Quantity</label>
+            <input type="number" step="0.01" class="form-control" id="add_quantity" name="quantity" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_total_price" class="form-label">Total Price</label>
+            <input type="number" step="0.01" class="form-control" id="add_total_price" name="total_price" required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add Purchase</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Book Purchase Modal -->
+<div class="modal fade" id="editBookPurchaseModal" tabindex="-1" aria-labelledby="editBookPurchaseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editBookPurchaseForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBookPurchaseModalLabel">Edit Book Purchase</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" id="purchase_id" name="id">
+          <div class="mb-3">
+            <label for="edit_purchase_user_id" class="form-label">User ID</label>
+            <input type="number" class="form-control" id="edit_purchase_user_id" name="user_id" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_purchase_book_id" class="form-label">Book ID</label>
+            <input type="number" class="form-control" id="edit_purchase_book_id" name="book_id" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_purchase_date" class="form-label">Purchase Date</label>
+            <input type="date" class="form-control" id="edit_purchase_date" name="purchase_date" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_quantity" class="form-label">Quantity</label>
+            <input type="number" step="0.01" class="form-control" id="edit_quantity" name="quantity" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_total_price" class="form-label">Total Price</label>
+            <input type="number" step="0.01" class="form-control" id="edit_total_price" name="total_price" required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update Purchase</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Book Purchase Modal -->
+<div class="modal fade" id="deleteBookPurchaseModal" tabindex="-1" aria-labelledby="deleteBookPurchaseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteBookPurchaseModalLabel">Delete Book Purchase</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="delete-bookPurchase-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeletePurchase">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- User Management -->
+<h1>User Management</h1>
+<button
+  type="button"
+  class="btn btn-primary btn-lg"
+  data-toggle="modal"
+  data-target="#addUserModal"
+  onclick="AdminUserService.openAddModal()"
+>
+  Add User
+</button>
+
+<!-- Users Table -->
+<table id="usersTable" class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Password</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="addUserForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="add_username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="add_username" name="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_full_name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="add_full_name" name="full_name" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="add_email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="add_phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="add_phone" name="phone" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="edit_password" name="passw">
+          </div>
+          <div class="mb-3">
+            <label for="edit_role" class="form-label">Role</label>
+            <select class="form-control" id="edit_role" name="role" required>
+              <option value="Admin">Admin</option>
+              <option value="User">User</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editUserForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="edit_user_id" name="id">
+          <div class="mb-3">
+            <label for="edit_username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="edit_username" name="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_full_name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="edit_full_name" name="full_name" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="edit_email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit_phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="edit_phone" name="phone" required>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="edit_password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="edit_password" name="passw">
+        </div>
+        <div class="mb-3">
+          <label for="edit_role" class="form-label">Role</label>
+          <select class="form-control" id="edit_role" name="role" required>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete User Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteUserModalLabel">Delete User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="delete-user-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteUser">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Book Review Management -->
+<h1>Book Review Management</h1>
+<button
+  type="button"
+  class="btn btn-primary btn-lg"
+  data-toggle="modal"
+  data-target="#addReviewModal"
+  onclick="BookReviewService.openAddModal()"
+>
+  Add Review
+</button>
+
+<!-- Book Reviews Table -->
+<table id="bookReviewsTable" class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User ID</th>
+      <th>Book ID</th>
+      <th>Review Text</th>
+      <th>Review Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<!-- Add Review Modal -->
+<div class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="addReviewForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Book Review</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input name="user_id" class="form-control mb-2" placeholder="User ID" required />
+          <input name="book_id" class="form-control mb-2" placeholder="Book ID" required />
+          <textarea name="review_text" class="form-control mb-2" placeholder="Review Text" required></textarea>
+          <input name="review_date" type="date" class="form-control mb-2" required />
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Add Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Review Modal -->
+<div class="modal fade" id="editReviewModal" tabindex="-1" aria-labelledby="editReviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editReviewForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Book Review</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id" />
+          <input name="user_id" class="form-control mb-2" placeholder="User ID" required />
+          <input name="book_id" class="form-control mb-2" placeholder="Book ID" required />
+          <textarea name="review_text" class="form-control mb-2" placeholder="Review Text" required></textarea>
+          <input name="review_date" type="date" class="form-control mb-2" required />
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Update Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Review Modal -->
+<div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Book Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="delete-review-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteReview">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+</div>
+
+<script>
+  BookService.init(); 
+  BookRentalService.init(); 
+  BookPurchaseService.init();
+  AdminUserService.init();
+  BookReviewService.init();
+</script>
