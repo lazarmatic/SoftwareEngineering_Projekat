@@ -10,6 +10,9 @@ require_once './rest/services/authService.php';
 require_once "./middleware/authMiddleware.php";
 require_once "./data/Roles.php";
 
+// Factory Pattern - Import ServiceFactory
+require_once './rest/factory/ServiceFactory.php';
+
 
 
 
