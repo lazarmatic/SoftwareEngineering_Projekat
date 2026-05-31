@@ -1,17 +1,17 @@
 <?php
 require '../vendor/autoload.php'; //run autoloader
 
-require_once './rest/services/bookService.php';
-require_once './rest/services/bookRentalService.php';
-require_once './rest/services/bookStoreService.php';
-require_once './rest/services/bookReviewService.php';
-require_once './rest/services/userService.php';
-require_once './rest/services/authService.php';
-require_once "./middleware/authMiddleware.php";
-require_once "./data/Roles.php";
+require_once __DIR__ . '/rest/services/bookService.php';
+require_once __DIR__ . '/rest/services/bookRentalService.php';
+require_once __DIR__ . '/rest/services/bookStoreService.php';
+require_once __DIR__ . '/rest/services/bookReviewService.php';
+require_once __DIR__ . '/rest/services/userService.php';
+require_once __DIR__ . '/rest/services/authService.php';
+require_once __DIR__ . '/middleware/authMiddleware.php';
+require_once __DIR__ . '/data/roles.php';
 
 // Factory Pattern - Import ServiceFactory
-require_once './rest/factory/ServiceFactory.php';
+require_once __DIR__ . '/rest/factory/ServiceFactory.php';
 
 
 
