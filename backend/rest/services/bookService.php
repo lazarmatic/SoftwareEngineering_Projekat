@@ -1,8 +1,9 @@
 <?php
 require_once 'baseService.php';
-require_once 'C:\xampp\htdocs\webprojekat\backend\rest\dao\bookDao.php';
+//require_once 'C:\xampp\htdocs\webprojekat\backend\rest\dao\bookDao.php';
 //require_once 'backend\rest\dao\bookDao.php';
 //require_once '../dao/bookDao.php';
+require_once __DIR__ . '/../dao/bookDao.php';
 
 
 class bookService extends BaseService

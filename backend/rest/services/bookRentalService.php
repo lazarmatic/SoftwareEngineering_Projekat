@@ -1,7 +1,8 @@
 <?php
 require_once 'baseService.php';
 //require_once '../dao/bookRentalDao.php';
-require_once 'C:\xampp\htdocs\webprojekat\backend\rest\dao\bookRentalDao.php';
+//require_once 'C:\xampp\htdocs\webprojekat\backend\rest\dao\bookRentalDao.php';
+require_once __DIR__ . '/../dao/bookRentalDao.php';
 
 // Strategy Pattern - Import pricing strategies
 require_once __DIR__ . '/../strategies/RentalPricingStrategy.php';
