@@ -54,30 +54,38 @@ Flight::map('authorize_permission', function ($permission) {
 
 
 Flight::route('/*', function () {
+
+    $url = Flight::request()->url;
+
     if (
-        strpos(Flight::request()->url, '/auth/login') === 0 ||
-        strpos(Flight::request()->url, '/auth/register') === 0
+        $url === '/' ||
+        $url === '/favicon.ico' ||
+        strpos($url, '/auth/login') === 0 ||
+        strpos($url, '/auth/register') === 0
     ) {
         return TRUE;
-    } else {
-        try {
-            $token = Flight::request()->getHeader("Authentication");
-            if (!$token)
-                Flight::halt(401, "Missing authentication header");
+    }
 
+    $token = Flight::request()->getHeader("Authentication");
 
-            $decoded_token = JWT::decode($token, new Key(Config::JWT_SECRET(), 'HS256'));
+    if (!$token) {
+        Flight::halt(401, "Missing authentication header");
+    }
 
+    try {
+        $decoded_token = JWT::decode(
+            $token,
+            new Key(Config::JWT_SECRET(), 'HS256')
+        );
 
-            Flight::set('user', $decoded_token->user);
-            Flight::set('jwt_token', $token);
-            return TRUE;
-        } catch (\Exception $e) {
-            Flight::halt(401, $e->getMessage());
-        }
+        Flight::set('user', $decoded_token->user);
+        Flight::set('jwt_token', $token);
+
+        return TRUE;
+    } catch (\Exception $e) {
+        Flight::halt(401, $e->getMessage());
     }
 });
-
 require_once './rest/routes/authRoutes.php';
 require_once './rest/routes/bookRoutes.php';
 require_once './rest/routes/bookRentalRoutes.php';
