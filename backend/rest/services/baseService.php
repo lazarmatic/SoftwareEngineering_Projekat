@@ -1,8 +1,9 @@
 <?php
 
 
-require_once 'C:\xampp\htdocs\webprojekat\backend\rest\dao\baseDao.php';
+//require_once 'C:\xampp\htdocs\webprojekat\backend\rest\dao\baseDao.php';
 //require_once 'backend\rest\dao\baseDao.php';
+require_once __DIR__ . '/../dao/baseDao.php';
 
 
 class BaseService
