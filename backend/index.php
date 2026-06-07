@@ -1,4 +1,5 @@
 <?php
+die("INDEX LOADED");
 require '../vendor/autoload.php'; //run autoloader
 
 require_once __DIR__ . '/rest/services/bookService.php';
